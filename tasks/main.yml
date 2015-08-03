@@ -1,0 +1,13 @@
+---
+# tasks file for ansible-symfony2
+
+- include: init.yml
+- include: directory.yml
+- include: git.yml
+- include: links.yml
+- include: composer.yml
+
+- include: pre_tasks.yml
+- include: reboot.yml
+- include: post_tasks.yml
+- include: cleanup.yml

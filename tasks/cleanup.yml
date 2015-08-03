@@ -1,0 +1,11 @@
+---
+- name: cleanup old releases
+  shell: "ls -t | awk 'NR>{{keep_releases|string }}' | xargs rm -rf"
+  args:
+    chdir: "/home/www/{{ deploy_user }}/{{ deploy_dir }}/releases"
+
+
+- name: set file permissions to www-data
+  command: 'chown -R www-data:www-data .'
+  args:
+    chdir: '{{ release_path }}'

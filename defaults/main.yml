@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-symfony2
+symfony2_project_composer_path: /usr/local/bin
+symfony2_project_composer_opts: '--no-dev -o'
+deploy_pre_deploy_tasks: []
+deploy_post_deploy_tasks: []

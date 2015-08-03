@@ -1,0 +1,17 @@
+---
+- name: Check if composer exists.
+  stat: path={{ symfony2_project_composer_path }}/composer.phar
+  register: composer_file
+
+- name: Install composer.
+  get_url: url=https://getcomposer.org/composer.phar dest={{ symfony2_project_composer_path }} mode=0755 validate_certs=no
+  when: composer_file.stat.exists == false
+
+- name: Update composer if already exists.
+  shell: "{{ composer }} selfupdate"
+  when: composer_file.stat.exists == true
+
+- name: Run composer install.
+  sudo: yes
+  sudo_user: '{{ deploy_user }}'
+  shell: cd {{ release_path }} && export SYMFONY_ENV={{ cluster_env }} && php {{ composer }} install {{ symfony2_project_composer_opts }}

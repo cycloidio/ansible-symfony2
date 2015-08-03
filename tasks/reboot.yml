@@ -1,0 +1,12 @@
+---
+- name: Update current Symlink
+  sudo: yes
+  sudo_user: '{{ deploy_user }}'
+  file: state=link 
+        path={{ current_path }}
+        src={{ release_path }}
+##   notify:
+##      - restart thin
+##      - restart sidekiq
+
+- meta: flush_handlers

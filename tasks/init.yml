@@ -1,0 +1,16 @@
+---
+- name: Generate release timestamp
+  command: date +%Y%m%d%H%M%S
+  register: timestamp
+  run_once: true
+
+- set_fact: "release_path='/home/www/{{ deploy_user }}/{{ deploy_dir }}/releases/{{ timestamp.stdout }}'"
+- set_fact: "shared_path='/home/www/{{ deploy_user }}/{{ deploy_dir }}/shared'"
+- set_fact: "current_path='/home/www/{{ deploy_user }}/{{ deploy_dir}}/current'"
+
+- set_fact: "composer='{{symfony2_project_composer_path}}/composer.phar'"
+
+- set_fact: keep_releases={{ keep_releases|int }}
+  when: keep_releases is defined
+- set_fact: keep_releases={{ 6|int }}
+  when: keep_releases is not defined
