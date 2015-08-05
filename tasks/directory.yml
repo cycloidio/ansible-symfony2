@@ -34,7 +34,7 @@
   sudo_user: '{{ deploy_user }}'
   when: git_stat.stat.exists == False
 
-- name: set the log right
-  file: path="{{ shared_path }}/app/logs/{{ cluster_env }}.log"
-        owner=www-data
-        group=www-data
+## - name: set the log right
+##   file: path="{{ shared_path }}/app/logs/{{ cluster_env }}.log"
+##         owner=www-data
+##         group=www-data
