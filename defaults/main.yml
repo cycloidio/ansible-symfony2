@@ -1,6 +1,28 @@
 ---
-# defaults file for ansible-symfony2
-symfony2_project_composer_path: /usr/local/bin
-symfony2_project_composer_opts: '--no-dev -o'
-deploy_pre_deploy_tasks: []
-deploy_post_deploy_tasks: []
+symfony_env: prod
+symfony_php_path: php # The PHP executable to use for all command line tasks
+
+symfony_run_composer: true
+symfony_composer_path: "{{ deployment_deploy_to }}/composer.phar"
+symfony_composer_options: '--no-dev --optimize-autoloader --no-interaction'
+symfony_composer_self_update: true # Always attempt a composer self-update
+
+symfony_run_assets_install: true
+symfony_assets_options: '--no-interaction'
+
+symfony_run_assetic_dump: true
+symfony_assetic_options: '--no-interaction'
+
+symfony_run_cache_clear_and_warmup: true
+symfony_cache_options: ''
+
+###############################################################################
+# Enable the schema/migration tasks ONLY if you have 1 and only 1 host in your
+# inventory, since running migrations in parallel might lead to data corruption.
+# (see README.md for more details)
+###############################################################################
+symfony_run_doctrine_migrations: false
+symfony_doctrine_options: '--no-interaction'
+
+symfony_run_mongodb_schema_update: false
+symfony_mongodb_options: ''

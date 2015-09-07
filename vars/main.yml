@@ -1,2 +1,3 @@
 ---
-# vars file for ansible-symfony2
+deployment_after_update_code_tasks_file: "../../cycloid.symfony2/config/after_update_code.yml"
+deployment_after_symlink_shared_tasks_file: "../../cycloid.symfony2/config/after_symlink_shared.yml"
