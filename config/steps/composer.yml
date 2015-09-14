@@ -3,7 +3,7 @@
   stat: path={{symfony_composer_path}}
   register: composer_file
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
 
 - name: Run composer self-update
   shell: "{{symfony_composer_path}} selfupdate --no-interaction"
@@ -11,12 +11,12 @@
   register: composer_self_update_result
   changed_when: composer_self_update_result.stderr | search('Updating')
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
 
 - name: Install composer
   get_url: url=https://getcomposer.org/composer.phar dest={{symfony_composer_path}} mode=0755 validate_certs=no force=no
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
 
 - name: Run composer install
   shell: chdir={{deployment_release_path.stdout}}
@@ -24,4 +24,4 @@
   register: composer_install_result
   changed_when: composer_install_result.stderr | search('- \w+ing ')
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"

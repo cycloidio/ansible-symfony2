@@ -5,4 +5,4 @@
     owner="{{ deploy_user }}"
     group="{{ deploy_user }}"
   become: yes
-  become_user: {{ deploy_user }}
+  become_user: "{{ deploy_user }}"
