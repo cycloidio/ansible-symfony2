@@ -1,3 +1,5 @@
+- include: steps/parameters.yml
+
 - include: steps/composer.yml
   when: symfony_run_composer
 

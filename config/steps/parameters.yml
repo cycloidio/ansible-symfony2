@@ -1,0 +1,6 @@
+- name: Copy parameters.yml
+  template:
+    src=newsroom/parameters.yml.j2
+    dest="{{ adeployment_deploy_to }}/{{ deployment_version_dir }}/app/config/parameters.yml"
+    owner="{{ deploy_user }}"
+    group="{{ deploy_user }}"
