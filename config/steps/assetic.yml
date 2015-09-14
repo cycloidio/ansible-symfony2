@@ -4,3 +4,4 @@
     SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console assetic:dump {{ symfony_assetic_options }}
   become: yes
   become_user: "{{ deploy_user }}"
+  when: symfony_run_assetic_dump
