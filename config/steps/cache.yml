@@ -2,7 +2,11 @@
 - name: Clear cache
   shell: chdir={{deployment_release_path.stdout}}
     SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console cache:clear --no-warmup {{symfony_cache_options}}
+  become: yes
+  become_user: {{ deploy_user }}
 
 - name: Warm-up cache
   shell: chdir={{deployment_release_path.stdout}}
     SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console cache:warmup {{symfony_cache_options}}
+  become: yes
+  become_user: {{ deploy_user }}

@@ -1,6 +1,8 @@
 - name: Copy parameters.yml
   template:
     src="{{ symfony_parameters_template }}"
-    dest="{{ deployment_deploy_to }}/{{ deployment_version_dir }}/app/config/parameters.yml"
+    dest="{{ deployment_release_path.stdout }}/app/config/parameters.yml"
     owner="{{ deploy_user }}"
     group="{{ deploy_user }}"
+  become: yes
+  become_user: {{ deploy_user }}
