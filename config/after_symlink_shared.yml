@@ -20,3 +20,6 @@
 
 - include: steps/mongodb.yml
   when: symfony_run_mongodb_schema_update
+
+- include: steps/elastica.yml
+  when: symfony_run_elastic_populate
