@@ -5,3 +5,4 @@
   become: yes
   become_user: "{{ deploy_user }}"
   when: symfony_run_schema_update
+  run_once: true
