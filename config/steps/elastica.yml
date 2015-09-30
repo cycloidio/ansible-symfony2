@@ -5,4 +5,4 @@
   when: symfony_run_elastica_populate
   become: yes
   become_user: "{{ deploy_user }}"
-
+  run_once: true
