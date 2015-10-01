@@ -23,3 +23,6 @@
 
 - include: steps/elastica.yml
   when: symfony_run_elastica_populate
+
+- include: steps/liip.yml
+  when: symfony_run_liip_imagine_cache_remove

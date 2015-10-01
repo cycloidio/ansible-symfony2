@@ -1,0 +1,7 @@
+---
+- name: liip clear cache
+  shell: chdir={{deployment_release_path.stdout}}
+    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console liip:imagine:cache:remove {{symfony_liip_imagine_cache_remove_options}}
+  when: symfony_run_liip_imagine_cache_remove
+  become: yes
+  become_user: "{{ deploy_user }}"
