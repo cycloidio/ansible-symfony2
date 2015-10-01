@@ -1,7 +1,8 @@
 ---
 - name: Install assets
   shell: chdir={{deployment_release_path.stdout}}
-    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console assets:install {{ symfony_assets_options }}
+    {{symfony_php_path}} app/console assets:install --env={{ item }} {{ symfony_assets_options }}
   become: yes
   become_user: "{{ deploy_user }}"
   when: symfony_run_assets_install
+  with_items: "{{ symfony_env }}"

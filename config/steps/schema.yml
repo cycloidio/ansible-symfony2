@@ -1,7 +1,7 @@
 ---
 - name: Dump assetic assets
   shell: chdir={{deployment_release_path.stdout}}
-    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console doctrine:schema:update {{ symfony_schema_options }}
+    {{symfony_php_path}} app/console doctrine:schema:update --env=prod {{ symfony_schema_options }}
   become: yes
   become_user: "{{ deploy_user }}"
   when: symfony_run_schema_update

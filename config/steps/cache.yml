@@ -1,14 +1,16 @@
 ---
 - name: Clear cache
   shell: chdir={{deployment_release_path.stdout}}
-    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console cache:clear --no-warmup {{symfony_cache_options}}
+    {{symfony_php_path}} app/console cache:clear --no-warmup --env={{ item }} {{symfony_cache_options}}
   when: symfony_run_cache_clear_and_warmup
   become: yes
   become_user: "{{ deploy_user }}"
+  with_items: "{{ symfony_env }}"
 
 - name: Warm-up cache
   shell: chdir={{deployment_release_path.stdout}}
-    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console cache:warmup {{symfony_cache_options}}
+    {{symfony_php_path}} app/console cache:warmup --env={{ item }} {{symfony_cache_options}}
   when: symfony_run_cache_clear_and_warmup
   become: yes
   become_user: "{{ deploy_user }}"
+  with_items: "{{ symfony_env }}"

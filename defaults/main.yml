@@ -1,5 +1,6 @@
 ---
-symfony_env: prod
+symfony_env:
+  - prod
 symfony_php_path: php # The PHP executable to use for all command line tasks
 
 symfony_run_composer: true

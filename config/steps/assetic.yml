@@ -1,7 +1,8 @@
 ---
 - name: Dump assetic assets
   shell: chdir={{deployment_release_path.stdout}}
-    SYMFONY_ENV={{symfony_env}} {{symfony_php_path}} app/console assetic:dump {{ symfony_assetic_options }}
+    {{symfony_php_path}} app/console assetic:dump --env={{ item }} {{ symfony_assetic_options }}
   become: yes
   become_user: "{{ deploy_user }}"
   when: symfony_run_assetic_dump
+  with_items: "{{ symfony_env }}"
