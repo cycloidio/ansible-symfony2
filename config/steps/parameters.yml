@@ -4,5 +4,6 @@
     dest="{{ deployment_release_path.stdout }}/app/config/parameters.yml"
     owner="{{ deploy_user }}"
     group="{{ deploy_user }}"
+  when: symfony_run_parameters
   become: yes
   become_user: "{{ deploy_user }}"

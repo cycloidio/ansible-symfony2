@@ -26,6 +26,8 @@ symfony_elastica_options: ''
 symfony_run_liip_imagine_cache_remove: false
 symfony_liip_imagine_cache_remove_options: ''
 
+symfony_run_parameters: true
+
 ###############################################################################
 # Enable the schema/migration tasks ONLY if you have 1 and only 1 host in your
 # inventory, since running migrations in parallel might lead to data corruption.
