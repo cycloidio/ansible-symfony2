@@ -1,5 +1,3 @@
-- include: steps/reset-cache.yml
-
 - include: steps/parameters.yml
 
 - include: steps/composer.yml
@@ -28,3 +26,6 @@
 
 - include: steps/liip.yml
   when: symfony_run_liip_imagine_cache_remove
+
+- include: steps/reset-cache.yml
+  when: symfony_reset_cache_pool is defined

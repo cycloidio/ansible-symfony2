@@ -2,4 +2,7 @@
   file: path=/var/www/ state=directory mode=0755 owner=www-data group=www-data
 
 - name: Create reset-cache.php
-  lineinfile: dest=/var/www/reset-cache.php regexp="^<?php" line="<?php opcache_reset(); ?>"
+  lineinfile: dest=/var/www/reset-cache.php regexp="^<?php" line="<?php opcache_reset(); ?>" create=yes owner=www-data group=www-data
+
+- name: Call reset cache
+  uri: url="http://localhost/reset-cache?pool={{ symfony_reset_cache_pool }}"
