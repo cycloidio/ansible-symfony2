@@ -1,3 +1,5 @@
+- include: steps/reset-cache.yml
+
 - include: steps/parameters.yml
 
 - include: steps/composer.yml
