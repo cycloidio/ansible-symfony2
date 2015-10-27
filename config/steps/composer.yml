@@ -18,10 +18,20 @@
   become: yes
   become_user: "{{ deploy_user }}"
 
-- name: Run composer install
+- name: Run composer install | DEV
+  shell: chdir={{deployment_release_path.stdout}}
+    export SYMFONY_ENV=dev && {{symfony_php_path}} {{symfony_composer_path}} install {{symfony_composer_options}}
+  register: composer_install_result
+  changed_when: composer_install_result.stderr | search('- \w+ing ')
+  become: yes
+  become_user: "{{ deploy_user }}"
+  when: "'dev' in symfony_env"
+
+- name: Run composer install | PROD
   shell: chdir={{deployment_release_path.stdout}}
     export SYMFONY_ENV=prod && {{symfony_php_path}} {{symfony_composer_path}} install {{symfony_composer_options}}
   register: composer_install_result
   changed_when: composer_install_result.stderr | search('- \w+ing ')
   become: yes
   become_user: "{{ deploy_user }}"
+  when: not "'dev' in symfony_env"
