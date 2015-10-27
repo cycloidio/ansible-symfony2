@@ -34,4 +34,4 @@
   changed_when: composer_install_result.stderr | search('- \w+ing ')
   become: yes
   become_user: "{{ deploy_user }}"
-  when: not "'dev' in symfony_env"
+  when: "'dev' not in symfony_env"
