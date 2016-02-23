@@ -1,28 +1,28 @@
-- include: "{{ symfony_role_path }}steps/parameters.yml"
+- include: steps/parameters.yml
 
-- include: "{{ symfony_role_path }}steps/composer.yml"
+- include: steps/composer.yml
   when: symfony_run_composer
 
-- include: "{{ symfony_role_path }}steps/schema.yml"
+- include: steps/schema.yml
   when: symfony_run_schema_update
 
-- include: "{{ symfony_role_path }}steps/assets.yml"
+- include: steps/assets.yml
   when: symfony_run_assets_install
 
-- include: "{{ symfony_role_path }}steps/assetic.yml"
+- include: steps/assetic.yml
   when: symfony_run_assetic_dump
 
-- include: "{{ symfony_role_path }}steps/cache.yml"
+- include: steps/cache.yml
   when: symfony_run_cache_clear_and_warmup
 
-- include: "{{ symfony_role_path }}steps/doctrine.yml"
+- include: steps/doctrine.yml
   when: symfony_run_doctrine_migrations
 
-- include: "{{ symfony_role_path }}steps/mongodb.yml"
+- include: steps/mongodb.yml
   when: symfony_run_mongodb_schema_update
 
-- include: "{{ symfony_role_path }}steps/elastica.yml"
+- include: steps/elastica.yml
   when: symfony_run_elastica_populate
 
-- include: "{{ symfony_role_path }}steps/liip.yml"
+- include: steps/liip.yml
   when: symfony_run_liip_imagine_cache_remove

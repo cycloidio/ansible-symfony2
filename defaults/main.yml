@@ -38,6 +38,3 @@ symfony_doctrine_options: '--no-interaction'
 
 symfony_run_mongodb_schema_update: false
 symfony_mongodb_options: ''
-
-
-symfony_role_path: "../../cycloid.symfony2/config/"
