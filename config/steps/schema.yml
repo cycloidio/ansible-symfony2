@@ -1,6 +1,6 @@
 ---
 - name: Doctrine Schema Update
-  shell: chdir={{deployment_release_path.stdout}}
+  shell: chdir={{deployment_release_path.stdout}}/{{symfony_deployment_subdir}}
     {{symfony_php_path}} app/console doctrine:schema:update --env=prod {{ symfony_schema_options }}
   become: yes
   become_user: "{{ deploy_user }}"

@@ -20,6 +20,12 @@ The `defaults` vars declared in this module:
 ```YAML
 symfony_env: prod
 symfony_php_path: php # The PHP executable to use for all command line tasks
+# symfony_deployment_subdir: If clients have a special path in their release folder.
+#
+# e.g. if symfony_deployment_subdir is 'toto' then you'll be looking for:
+# releases/$VERSION/toto/composer.json etc instead of:
+# releases/$VERSION/composer.json
+symfony_deployment_subdir: ""
 
 symfony_run_composer: true
 symfony_composer_path: "{{ deployment_deploy_to }}/composer.phar"
