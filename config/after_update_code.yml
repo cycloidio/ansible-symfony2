@@ -3,6 +3,6 @@
   file:
     state=absent
     path={{deployment_release_path.stdout}}/{{item}}
-  with_items: deployment_shared_paths
+  with_items: "{{ deployment_shared_paths }}"
   become: yes
   become_user: "{{ deploy_user }}"
