@@ -3,6 +3,9 @@
 - include: "{{ symfony_role_path }}/config/steps/composer.yml"
   when: symfony_run_composer
 
+- include: "{{ symfony_before_run_schema_update }}"
+  when: symfony_before_run_schema_update is defined
+
 - include: "{{ symfony_role_path }}/config/steps/schema.yml"
   when: symfony_run_schema_update
 
