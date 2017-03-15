@@ -1,6 +1,6 @@
 ---
 - name: liip clear cache
-  shell: chdir={{deployment_release_path.stdout}}/{{symfony_deployment_subdir}}
+  shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     {{symfony_php_path}} {{ symfony_console_path }} liip:imagine:cache:remove --env={{ item }} {{symfony_liip_imagine_cache_remove_options}}
   when: symfony_run_liip_imagine_cache_remove
   become: yes

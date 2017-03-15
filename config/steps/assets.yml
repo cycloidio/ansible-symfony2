@@ -1,7 +1,7 @@
 ---
 - name: Install assets
-  shell: chdir={{deployment_release_path.stdout}}/{{symfony_deployment_subdir}}
-    {{symfony_php_path}} {{ symfony_console_path }} assets:install --env={{ item }} {{ symfony_assets_options }}
+  shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
+    {{symfony_php_path}} {{ symfony_console_path}} assets:install --env={{ item }} {{ symfony_assets_options }}
   become: yes
   become_user: "{{ deploy_user }}"
   when: symfony_run_assets_install

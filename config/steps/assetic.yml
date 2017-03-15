@@ -1,6 +1,6 @@
 ---
 - name: Dump assetic assets
-  shell: chdir={{deployment_release_path.stdout}}
+  shell: chdir={{ansistrano_release_path.stdout}}
     {{symfony_php_path}} {{ symfony_console_path }} assetic:dump --env={{ item }} {{ symfony_assetic_options }}
   become: yes
   become_user: "{{ deploy_user }}"

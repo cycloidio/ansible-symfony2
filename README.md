@@ -5,7 +5,7 @@ A set of [Ansible](http://docs.ansible.com/) tasks for deploying PHP application
 
 This role is more or less just a collection of the most common post-installation setup tasks (i.e. getting a Composer executable, installing dependencies and autoloader, perform cache warming, deploy migrations etc). It does not itself deal with setting up the directory structures or getting files onto your servers - that part is handled by the more generic `cycloid.deployment` role.
 
-The way this is implemented is by defining a couple of the `deployment_(before|after)_X` vars 
+The way this is implemented is by defining a couple of the `ansistrano_(before|after)_X` vars 
 
 Requirements
 ------------
@@ -29,7 +29,7 @@ symfony_deployment_subdir: ""
 
 symfony_console_path: app/console
 symfony_run_composer: true
-symfony_composer_path: "{{ deployment_deploy_to }}/composer.phar"
+symfony_composer_path: "{{ ansistrano_deploy_to }}/composer.phar"
 symfony_composer_options: '--no-dev --optimize-autoloader --no-interaction'
 symfony_composer_self_update: true # Always attempt a composer self-update
 
@@ -57,7 +57,7 @@ Database schema migrations can generally NOT be run in parallel across multiple 
 
 In order to get around the parallel exection, you can do the following:
 
-1. Specify your own `deployment_before_symlink_tasks_file`, perhaps with the one in this project as a template (look in ansible-symfony2/config/steps/).
+1. Specify your own `ansistrano_before_symlink_tasks_file`, perhaps with the one in this project as a template (look in ansible-symfony2/config/steps/).
 2. Pick one of the following approaches:
   - (a) Organize hosts into groups such that the task will run on only the _first_ host in some group:
     `when: groups['www-production'][0] == inventory_hostname`
@@ -67,7 +67,7 @@ In order to get around the parallel exection, you can do the following:
 Example playbook
 ----------------
 
-As a bare minimum, you probably need to declare the `deployment_deploy_from` and `deployment_deploy_to` variables in your play. Deployment defaults to using rsync from a local directory (again, see the [deployment docs](https://github.com/deployment/deploy)).
+As a bare minimum, you probably need to declare the `ansistrano_deploy_from` and `deployment_deploy_to` variables in your play. Deployment defaults to using rsync from a local directory (again, see the [deployment docs](https://github.com/deployment/deploy)).
 
 Let's assume there is a `my-app-infrastructure/deploy.yml`:
 ```YAML
@@ -75,9 +75,9 @@ Let's assume there is a `my-app-infrastructure/deploy.yml`:
 - hosts: all
   gather_facts: false
   vars:
-    deployment_deploy_from: ../my-project-checkout
-    deployment_deploy_to: /home/app-user/my-project-deploy/
-    deployment_before_symlink_tasks_file: "{{playbook_dir}}/config/app_specific_setup.yml"
+    ansistrano_deploy_from: ../my-project-checkout
+    ansistrano_deploy_to: /home/app-user/my-project-deploy/
+    ansistrano_before_symlink_tasks_file: "{{playbook_dir}}/config/app_specific_setup.yml"
   roles:
     - cycloid.symfony2
 ```
