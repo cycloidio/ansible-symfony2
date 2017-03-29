@@ -35,6 +35,7 @@ symfony_run_parameters: true
 # (see README.md for more details)
 ###############################################################################
 symfony_run_doctrine_migrations: false
+symfony_run_doctrine_runonce: false
 symfony_doctrine_options: '--no-interaction'
 
 symfony_run_mongodb_schema_update: false

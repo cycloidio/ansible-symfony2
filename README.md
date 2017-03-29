@@ -44,7 +44,7 @@ symfony_cache_options: ''
 ###############################################################################
 symfony_run_doctrine_migrations: false
 symfony_doctrine_options: '--no-interaction'
-
+symfony_run_doctrine_runonce: false
 symfony_run_mongodb_schema_update: false
 symfony_mongodb_options: ''
 ```
@@ -61,7 +61,7 @@ In order to get around the parallel exection, you can do the following:
   - (a) Organize hosts into groups such that the task will run on only the _first_ host in some group:
     `when: groups['www-production'][0] == inventory_hostname`
   - (b) Use the `run_once: true` perhaps with `delegate_to: some_primary_host` ([Docs: Playbook delegation](http://docs.ansible.com/ansible/playbooks_delegation.html#run-once))
-
+  - (c) Use the current config/steps/doctrine.yml (runned after) with the symfony_run_doctrine_runonce: true
 
 Example playbook
 ----------------
