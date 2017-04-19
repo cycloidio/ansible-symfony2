@@ -27,6 +27,7 @@ symfony_php_path: php # The PHP executable to use for all command line tasks
 # releases/$VERSION/composer.json
 symfony_deployment_subdir: ""
 
+symfony_console_path: app/console
 symfony_run_composer: true
 symfony_composer_path: "{{ deployment_deploy_to }}/composer.phar"
 symfony_composer_options: '--no-dev --optimize-autoloader --no-interaction'

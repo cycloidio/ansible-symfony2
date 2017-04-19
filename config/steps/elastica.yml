@@ -1,7 +1,7 @@
 ---
 - name: Populate elasticsearch with elastica bundle
   shell: chdir={{deployment_release_path.stdout}}
-    {{symfony_php_path}} app/console fos:elastica:populate --env=prod {{ symfony_elastica_options }}
+    {{symfony_php_path}} {{ symfony_console_path }} fos:elastica:populate --env=prod {{ symfony_elastica_options }}
   when: symfony_run_elastica_populate
   become: yes
   become_user: "{{ deploy_user }}"

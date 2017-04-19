@@ -44,3 +44,5 @@ symfony_mongodb_options: ''
 # Define the absolute path to migrate on ansible 2. The include behavior change in ansible 2.
 # See https://github.com/cbrunnkvist/ansistrano-symfony-deploy/commit/ad41d4c393d36b71376d8353219ba8393d5f7ebb
 symfony_role_path: "{{ role_path }}/../cycloid.symfony2"
+
+symfony_console_path: app/console
