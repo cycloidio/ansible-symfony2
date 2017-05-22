@@ -1,6 +1,6 @@
 ---
 - name: Clear cache
-  shell: chdir={{deployment_release_path.stdout}}/{{symfony_deployment_subdir}}
+  shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     {{symfony_php_path}} {{ symfony_console_path }} cache:clear --no-warmup --env={{ item }} {{symfony_cache_options}}
   when: symfony_run_cache_clear_and_warmup
   become: yes
@@ -8,7 +8,7 @@
   with_items: "{{ symfony_env }}"
 
 - name: Warm-up cache
-  shell: chdir={{deployment_release_path.stdout}}/{{symfony_deployment_subdir}}
+  shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     {{symfony_php_path}} {{ symfony_console_path }} cache:warmup --env={{ item }} {{symfony_cache_options}}
   when: symfony_run_cache_clear_and_warmup
   become: yes

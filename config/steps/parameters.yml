@@ -1,7 +1,7 @@
 - name: Copy parameters.yml
   template:
     src="{{ symfony_parameters_template }}"
-    dest="{{ deployment_release_path.stdout }}/{{ symfony_parameters_name | default('app/config/parameters.yml') }}"
+    dest="{{ ansistrano_release_path.stdout }}/{{ symfony_parameters_name | default('app/config/parameters.yml') }}"
     owner="{{ deploy_user }}"
     group="{{ deploy_user }}"
   when: symfony_run_parameters

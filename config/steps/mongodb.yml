@@ -1,4 +1,4 @@
 ---
 - name: Update MongoDB schema
-  shell: chdir={{deployment_release_path.stdout}}
+  shell: chdir={{ansistrano_release_path.stdout}}
     {{symfony_php_path}} {{ symfony_console_path }} doctrine:mongodb:schema:update --env=prod {{symfony_mongodb_options}}
