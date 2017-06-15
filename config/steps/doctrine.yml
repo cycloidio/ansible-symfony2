@@ -1,6 +1,6 @@
 ---
 - name: Run Doctrine migrations
-  shell: chdir={{ansistrano_release_path.stdout}}
+  shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     {{symfony_php_path}} {{ symfony_console_path }} doctrine:migrations:migrate --no-interaction --env=prod {{symfony_doctrine_options}}
   become: yes
   become_user: "{{ deploy_user }}"
