@@ -3,6 +3,7 @@ symfony_env:
   - prod
 symfony_php_path: php # The PHP executable to use for all command line tasks
 
+symfony_composer_version: ""
 symfony_run_composer: true
 symfony_composer_path: "{{ ansistrano_deploy_to }}/composer.phar"
 symfony_deployment_subdir: ""
