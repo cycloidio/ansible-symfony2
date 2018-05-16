@@ -13,10 +13,17 @@
   become: yes
   become_user: "{{ deploy_user }}"
 
-- name: Install composer
+- name: Install latest composer
   get_url: url=https://getcomposer.org/composer.phar dest={{symfony_composer_path}} mode=0755 validate_certs=no force=no
   become: yes
   become_user: "{{ deploy_user }}"
+  when: symfony_composer_version is not defined or symfony_composer_version | trim == ""
+
+- name: Install specific version of composer
+  get_url: url=https://getcomposer.org/download/{{symfony_composer_version}}/composer.phar dest={{symfony_composer_path}} mode=0755 validate_certs=no force=no
+  become: yes
+  become_user: "{{ deploy_user }}"
+  when: symfony_composer_version is defined and symfony_composer_version | trim != ""
 
 - name: Run composer install | DEV
   shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
