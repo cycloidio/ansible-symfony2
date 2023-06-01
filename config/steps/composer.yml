@@ -9,7 +9,7 @@
   shell: "{{symfony_composer_path}} selfupdate --no-interaction"
   when: composer_file.stat.exists and symfony_composer_self_update
   register: composer_self_update_result
-  changed_when: composer_self_update_result.stderr | search('Updating')
+  changed_when: composer_self_update_result.stderr is search('Updating')
   become: yes
   become_user: "{{ deploy_user }}"
 
@@ -29,7 +29,7 @@
   shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     export SYMFONY_ENV=dev && {{symfony_php_path}} {{symfony_composer_path}} install {{symfony_composer_options}}
   register: composer_install_result
-  changed_when: composer_install_result.stderr | search('- \w+ing ')
+  changed_when: composer_install_result.stderr is search('- \w+ing ')
   become: yes
   become_user: "{{ deploy_user }}"
   when: "'dev' in symfony_env"
@@ -38,7 +38,7 @@
   shell: chdir={{ansistrano_release_path.stdout}}/{{symfony_deployment_subdir}}
     export SYMFONY_ENV=prod && {{symfony_php_path}} {{symfony_composer_path}} install {{symfony_composer_options}}
   register: composer_install_result
-  changed_when: composer_install_result.stderr | search('- \w+ing ')
+  changed_when: composer_install_result.stderr is search('- \w+ing ')
   become: yes
   become_user: "{{ deploy_user }}"
   when: "'dev' not in symfony_env"
